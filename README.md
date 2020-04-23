@@ -64,6 +64,6 @@ By default the battery level will be set to 100%, the device name will be `Joydu
 
 ## Credits
 
-Credits to [alijani1](https://github.com/alijani1) as his (https://github.com/alijani1/ESP32-BLE-Gamepad) library helped me figure out how to fine tune some aspects of the controller.
+Credits to [alijani1](https://github.com/alijani1) as his [Atari joystick library](https://github.com/alijani1/ESP32-BLE-Gamepad) library helped me figure out how to fine tune some aspects of the controller.
 
-Credits to [lemmingDev](https://github.com/lemmingDev) as the BLE portion of this library is based on his (https://github.com/lemmingDev/ESP32-BLE-Gamepad).
+Credits to [lemmingDev](https://github.com/lemmingDev) as the BLE portion of this library is based on his [BLE gamepad](https://github.com/lemmingDev/ESP32-BLE-Gamepad).
