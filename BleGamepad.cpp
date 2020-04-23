@@ -34,7 +34,7 @@ static const uint8_t _hidReportDescriptor[] = {
   LOGICAL_MINIMUM(1),  0x00, //     LOGICAL_MINIMUM (0)
   LOGICAL_MAXIMUM(1),  0x01, //     LOGICAL_MAXIMUM (1)
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x05, //     REPORT_COUNT (5)
+  REPORT_COUNT(1),     0x07, //     REPORT_COUNT (7)
   HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;5 button bits
   // ------------------------------------------------- Padding
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
@@ -65,7 +65,7 @@ static const uint8_t _hidReportDescriptor[] = {
   LOGICAL_MINIMUM(1),  0x00, //     LOGICAL_MINIMUM (0)
   LOGICAL_MAXIMUM(1),  0x01, //     LOGICAL_MAXIMUM (1)
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x05, //     REPORT_COUNT (5)
+  REPORT_COUNT(1),     0x07, //     REPORT_COUNT (7)
   HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;7 button bits
   // ------------------------------------------------- Padding
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
