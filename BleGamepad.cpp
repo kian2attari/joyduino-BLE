@@ -26,7 +26,7 @@ static const uint8_t _hidReportDescriptor[] = {
   USAGE(1),            0x01, //   USAGE (Pointer)
   COLLECTION(1),       0x00, //   COLLECTION (Physical)
   REPORT_ID(1),        0x01, //     REPORT_ID (1)
-  // ------------------------------------------------- Buttons (1 to 5)
+  // ------------------------------------------------- Buttons (1 to 7)
   // Here we assign the bits needed to handle our 7 buttons
   USAGE_PAGE(1),       0x09, //     USAGE_PAGE (Button)
   USAGE_MINIMUM(1),    0x01, //     USAGE_MINIMUM (Button 1)
@@ -35,11 +35,11 @@ static const uint8_t _hidReportDescriptor[] = {
   LOGICAL_MAXIMUM(1),  0x01, //     LOGICAL_MAXIMUM (1)
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
   REPORT_COUNT(1),     0x07, //     REPORT_COUNT (7)
-  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;5 button bits
+  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;7 button bits
   // ------------------------------------------------- Padding
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x03, //     REPORT_COUNT (3)
-  HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;3 bit padding
+  REPORT_COUNT(1),     0x01, //     REPORT_COUNT (1) ; the padding
+  HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;1 bit padding
   // ------------------------------------------------- X/Y position
   USAGE_PAGE(1),       0x01, //     USAGE_PAGE (Generic Desktop)
   USAGE(1),            0x30, //     USAGE (X)
@@ -69,8 +69,8 @@ static const uint8_t _hidReportDescriptor[] = {
   HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;7 button bits
   // ------------------------------------------------- Padding
   REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x03, //     REPORT_COUNT (3)
-  HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;3 bit padding
+  REPORT_COUNT(1),     0x01, //     REPORT_COUNT (1)
+  HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;1 bit padding
   // ------------------------------------------------- X/Y position
   USAGE_PAGE(1),       0x01, //     USAGE_PAGE (Generic Desktop)
   USAGE(1),            0x30, //     USAGE (X)
