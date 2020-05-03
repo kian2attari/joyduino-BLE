@@ -23,7 +23,7 @@ private:
   BleConnectionStatus* connectionStatus;
   BLEHIDDevice* hid;
   BLECharacteristic* inputGamepad;
-  BLECharacteristic* inputGamepad2;
+  // BLECharacteristic* inputGamepad2;
   void buttons(uint16_t b);
   void rawAction(uint8_t msg[], char msgSize);
   static void taskServer(void* pvParameter);
@@ -33,7 +33,7 @@ public:
   void end(void);
   void setAxes(signed char x, signed char y);
   void setStick(signed char x, signed char y, uint8_t b);
-  void setStick2(signed char x, signed char y, uint8_t b);
+  // void setStick2(signed char x, signed char y, uint8_t b);
   void press(uint16_t b = BUTTON_1);   // press BUTTON_1 by default
   void release(uint16_t b = BUTTON_1); // release BUTTON_1 by default
   bool isPressed(uint16_t b = BUTTON_1); // check BUTTON_1 by default

@@ -50,38 +50,40 @@ static const uint8_t _hidReportDescriptor[] = {
   REPORT_COUNT(1),     0x02, //     REPORT_COUNT (2)
   HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;2 bytes (X,Y)
   END_COLLECTION(0),         //   END_COLLECTION
-  END_COLLECTION(0),         // END_COLLECTION
+  END_COLLECTION(0)         // END_COLLECTION
   
-  USAGE_PAGE(1),       0x01, // USAGE_PAGE (Generic Desktop)
-  USAGE(1),            0x05, // USAGE (Gamepad)
-  COLLECTION(1),       0x01, // COLLECTION (Application)
-  USAGE(1),            0x01, //   USAGE (Pointer)
-  COLLECTION(1),       0x00, //   COLLECTION (Physical)
-  REPORT_ID(1),        0x02, //     REPORT_ID (2)
-  // ------------------------------------------------- Buttons (1 to 7)
-  USAGE_PAGE(1),       0x09, //     USAGE_PAGE (Button)
-  USAGE_MINIMUM(1),    0x01, //     USAGE_MINIMUM (Button 1)
-  USAGE_MAXIMUM(1),    0x07, //     USAGE_MAXIMUM (Button 7)
-  LOGICAL_MINIMUM(1),  0x00, //     LOGICAL_MINIMUM (0)
-  LOGICAL_MAXIMUM(1),  0x01, //     LOGICAL_MAXIMUM (1)
-  REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x07, //     REPORT_COUNT (7)
-  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;7 button bits
-  // ------------------------------------------------- Padding
-  REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
-  REPORT_COUNT(1),     0x01, //     REPORT_COUNT (1)
-  HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;1 bit padding
-  // ------------------------------------------------- X/Y position
-  USAGE_PAGE(1),       0x01, //     USAGE_PAGE (Generic Desktop)
-  USAGE(1),            0x30, //     USAGE (X)
-  USAGE(1),            0x31, //     USAGE (Y)
-  LOGICAL_MINIMUM(1),  0x81, //     LOGICAL_MINIMUM (-127)
-  LOGICAL_MAXIMUM(1),  0x7f, //     LOGICAL_MAXIMUM (127)
-  REPORT_SIZE(1),      0x08, //     REPORT_SIZE (8)
-  REPORT_COUNT(1),     0x02, //     REPORT_COUNT (2)
-  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;2 bytes (X,Y)
-  END_COLLECTION(0),         //   END_COLLECTION
-  END_COLLECTION(0)          // END_COLLECTION
+  // The commented code can be uncommented to allow 2 controllers to connect at once!
+
+  // USAGE_PAGE(1),       0x01, // USAGE_PAGE (Generic Desktop)
+  // USAGE(1),            0x05, // USAGE (Gamepad)
+  // COLLECTION(1),       0x01, // COLLECTION (Application)
+  // USAGE(1),            0x01, //   USAGE (Pointer)
+  // COLLECTION(1),       0x00, //   COLLECTION (Physical)
+  // REPORT_ID(1),        0x02, //     REPORT_ID (2)
+  // // ------------------------------------------------- Buttons (1 to 7)
+  // USAGE_PAGE(1),       0x09, //     USAGE_PAGE (Button)
+  // USAGE_MINIMUM(1),    0x01, //     USAGE_MINIMUM (Button 1)
+  // USAGE_MAXIMUM(1),    0x07, //     USAGE_MAXIMUM (Button 7)
+  // LOGICAL_MINIMUM(1),  0x00, //     LOGICAL_MINIMUM (0)
+  // LOGICAL_MAXIMUM(1),  0x01, //     LOGICAL_MAXIMUM (1)
+  // REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
+  // REPORT_COUNT(1),     0x07, //     REPORT_COUNT (7)
+  // HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;7 button bits
+  // // ------------------------------------------------- Padding
+  // REPORT_SIZE(1),      0x01, //     REPORT_SIZE (1)
+  // REPORT_COUNT(1),     0x01, //     REPORT_COUNT (1)
+  // HIDINPUT(1),         0x03, //     INPUT (Constant, Variable, Absolute) ;1 bit padding
+  // // ------------------------------------------------- X/Y position
+  // USAGE_PAGE(1),       0x01, //     USAGE_PAGE (Generic Desktop)
+  // USAGE(1),            0x30, //     USAGE (X)
+  // USAGE(1),            0x31, //     USAGE (Y)
+  // LOGICAL_MINIMUM(1),  0x81, //     LOGICAL_MINIMUM (-127)
+  // LOGICAL_MAXIMUM(1),  0x7f, //     LOGICAL_MAXIMUM (127)
+  // REPORT_SIZE(1),      0x08, //     REPORT_SIZE (8)
+  // REPORT_COUNT(1),     0x02, //     REPORT_COUNT (2)
+  // HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;2 bytes (X,Y)
+  // END_COLLECTION(0),         //   END_COLLECTION
+  // END_COLLECTION(0)          // END_COLLECTION
 };
 
 BleGamepad::BleGamepad(std::string deviceName, std::string deviceManufacturer, uint8_t batteryLevel) :
@@ -116,18 +118,20 @@ void BleGamepad::setAxes(signed char x, signed char y)
   }
 }
 
-void BleGamepad::setStick2(signed char x, signed char y, uint8_t b )
-{
-  if (this->isConnected())
-  {
-    uint8_t m[3];
-    m[0] = b;
-    m[1] = x;
-    m[2] = y;
-    this->inputGamepad2->setValue(m, sizeof(m));
-    this->inputGamepad2->notify();
-  }
-}
+  // The commented code can be uncommented to allow 2 controllers to connect at once!
+
+// void BleGamepad::setStick2(signed char x, signed char y, uint8_t b )
+// {
+//   if (this->isConnected())
+//   {
+//     uint8_t m[3];
+//     m[0] = b;
+//     m[1] = x;
+//     m[2] = y;
+//     this->inputGamepad2->setValue(m, sizeof(m));
+//     this->inputGamepad2->notify();
+//   }
+// }
 
 void BleGamepad::setStick(signed char x, signed char y, uint8_t b )
 {
@@ -187,14 +191,17 @@ void BleGamepad::taskServer(void* pvParameter) {
   BLEServer *pServer = BLEDevice::createServer();
   pServer->setCallbacks(BleGamepadInstance->connectionStatus);
 
+  // The commented code can be uncommented to allow 2 controllers to connect at once! Make sure you uncomment the other
+  // references to inputGamepad2 throughout the library!
+  
   BleGamepadInstance->hid = new BLEHIDDevice(pServer);
   BleGamepadInstance->inputGamepad = BleGamepadInstance->hid->inputReport(1); // <-- input REPORTID from report map
-  BleGamepadInstance->inputGamepad2 = BleGamepadInstance->hid->inputReport(2); // <-- input REPORTID from report map
+  // BleGamepadInstance->inputGamepad2 = BleGamepadInstance->hid->inputReport(2); // <-- input REPORTID from report map
   BleGamepadInstance->connectionStatus->inputGamepad = BleGamepadInstance->inputGamepad;
-  BleGamepadInstance->connectionStatus->inputGamepad2 = BleGamepadInstance->inputGamepad2;
+  // BleGamepadInstance->connectionStatus->inputGamepad2 = BleGamepadInstance->inputGamepad2;
 
   BleGamepadInstance->hid->manufacturer()->setValue(BleGamepadInstance->deviceManufacturer);
-  BleGamepadInstance->hid->pnp(0x02, 0x8282, 0x0132, 0x0106);
+  BleGamepadInstance->hid->pnp(0x01, 0x8282, 0x0132, 0x0106);
   BleGamepadInstance->hid->hidInfo(0x00,0x01);
 
   BLESecurity *pSecurity = new BLESecurity();
