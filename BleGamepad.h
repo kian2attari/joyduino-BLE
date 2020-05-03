@@ -31,7 +31,7 @@ public:
   BleGamepad(std::string deviceName = "Joyduino ESP32", std::string deviceManufacturer = "Attari Inc.", uint8_t batteryLevel = 100);
   void begin(void);
   void end(void);
-  void setAxes(signed char x, signed char y);
+  void setAxes(signed char joyStick_x, signed char joyStick_y, signed char IMU_x, signed char IMU_y);
   void setStick(signed char x, signed char y, uint8_t b);
   // void setStick2(signed char x, signed char y, uint8_t b);
   void press(uint16_t b = BUTTON_1);   // press BUTTON_1 by default

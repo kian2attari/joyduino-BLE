@@ -44,13 +44,21 @@ static const uint8_t _hidReportDescriptor[] = {
   USAGE_PAGE(1),       0x01, //     USAGE_PAGE (Generic Desktop)
   USAGE(1),            0x30, //     USAGE (X)
   USAGE(1),            0x31, //     USAGE (Y)
+  /**Traditionally, Z represents the right stick’s X axis, Rx is used to represent
+   *  the right stick’s Y axis. It's stupid but it's is how most existing USB game pads work.
+   *  You can change it to that, or be a rebel like me and keep this configuration. The choice is yours Neo. **/
+  USAGE(1),            0x33, //     USAGE (Rx -- represents IMU_X)
+  USAGE(1),            0x34, //     USAGE (Ry -- represents IMU_Y)
   LOGICAL_MINIMUM(1),  0x81, //     LOGICAL_MINIMUM (-127)
   LOGICAL_MAXIMUM(1),  0x7f, //     LOGICAL_MAXIMUM (127)
   REPORT_SIZE(1),      0x08, //     REPORT_SIZE (8)
-  REPORT_COUNT(1),     0x02, //     REPORT_COUNT (2)
-  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;2 bytes (X,Y)
+  REPORT_COUNT(1),     0x04, //     REPORT_COUNT (4)
+  HIDINPUT(1),         0x02, //     INPUT (Data, Variable, Absolute) ;4 bytes (X,Y,Z,rZ)
+
   END_COLLECTION(0),         //   END_COLLECTION
-  END_COLLECTION(0)         // END_COLLECTION
+  END_COLLECTION(0),         // END_COLLECTION
+
+
   
   // The commented code can be uncommented to allow 2 controllers to connect at once!
 
@@ -105,14 +113,16 @@ void BleGamepad::end(void)
 {
 }
 
-void BleGamepad::setAxes(signed char x, signed char y)
+void BleGamepad::setAxes(signed char joyStick_x, signed char joyStick_y, signed char IMU_x, signed char IMU_y)
 {
   if (this->isConnected())
   {
-    uint8_t m[3];
+    uint8_t m[5];
     m[0] = _buttons;
-    m[1] = x;
-    m[2] = y;
+    m[1] = joyStick_x;
+    m[2] = joyStick_y;
+    m[3] = IMU_x;
+    m[4] = IMU_y;
     this->inputGamepad->setValue(m, sizeof(m));
     this->inputGamepad->notify();
   }
@@ -154,7 +164,7 @@ void BleGamepad::buttons(uint16_t b)
   if (b != _buttons)
   {
     _buttons = b;
-    setAxes(0, 0);
+    setAxes(0, 0, 0, 0);
   }
 }
 

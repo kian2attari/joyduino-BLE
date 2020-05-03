@@ -26,7 +26,7 @@ This library allows you to make the ESP32 act as a Bluetooth Gamepad and control
  * BUTTON_1 through to BUTTON_5* 
  * 
  * bleGamepad.setAxes takes the following signed char parameters: 
- * (X, Y);
+ * (X, Y, IMU_X, IMU_Y);
  */
  
 #include <BleGamepad.h> 
@@ -44,12 +44,12 @@ void loop() {
     Serial.println("Press buttons 1 and 5. Move all axes to max.");
     bleGamepad.press(BUTTON_5);
     bleGamepad.press(BUTTON_1);
-    bleGamepad.setAxes(127, 127);
+    bleGamepad.setAxes(127, 127, 127, 127);
     delay(500);
 
     Serial.println("Release button 7. Move all axes to min.");
     bleGamepad.release(BUTTON_7);
-    bleGamepad.setAxes(-127, -127);
+    bleGamepad.setAxes(-127, -127, -127, -127);
     delay(500);
   }
 }
