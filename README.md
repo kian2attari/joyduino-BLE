@@ -2,7 +2,9 @@
 Bluetooth LE Gamepad library for the ESP32 with Dual Joystick Support and designed for 7 button and 2 axes for simpler controllers. Trigger buttons and D-Hats can also easily be added.
 
 [Project Video](https://www.youtube.com/watch?v=6tGAyPK-LsI)
+
 [Demo Video](https://www.youtube.com/watch?v=VJ7w97qtVn0)
+
 This library allows you to make the ESP32 act as a Bluetooth Gamepad and control what it does. E.g. move axes and press buttons
 
 ## Features
